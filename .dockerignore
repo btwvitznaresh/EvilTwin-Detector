@@ -1,0 +1,24 @@
+# General overrides
+__pycache__/
+*.pyc
+*.pyo
+
+# Environments
+venv/
+.venv/
+env/
+.env
+
+# Cache layouts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs and Assets bounds 
+logs/*
+!logs/.keep
+assets/*
+!assets/.keep
+
+# Local mappings
+config_local.yaml

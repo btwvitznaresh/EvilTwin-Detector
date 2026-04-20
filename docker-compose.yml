@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: eviltwin_api
+    
+    # ⚠️ CRITIAL: Allows the docker loop layer to physically touch the host machine Wi-Fi antennas natively
+    network_mode: "host"
+    privileged: true 
+    
+    # Hooks native Uvicorn FastAPI bridge explicitly onto port 8000
+    command: uvicorn src.api:app --host 0.0.0.0 --port 8000
+    
+    # Bind persisting logs natively downward to avoid array resets over restarts
+    volumes:
+      - ./logs:/app/logs
+      - ./config.yaml:/app/config.yaml
+
+  dashboard:
+    build: .
+    container_name: eviltwin_dashboard
+    
+    # Binds directly against overarching GUI limits
+    ports:
+      - "8501:8501"
+      
+    # Boot target
+    command: streamlit run dashboard.py --server.address=0.0.0.0
+    
+    volumes:
+      - ./logs:/app/logs
+      - ./config.yaml:/app/config.yaml
+      
+    # Dependency orchestration
+    depends_on:
+      - api

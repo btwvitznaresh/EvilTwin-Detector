@@ -1,0 +1,21 @@
+# EvilTwin-Detector Configuration
+
+# Interval between network scans (in seconds)
+scan_interval: 10
+
+# Path to log output file
+log_path: "logs/detector.log"
+
+# List of BSSIDs (MAC addresses) that are known to be safe
+whitelist_bssids:
+  - "00:11:22:33:44:55"
+  - "AA:BB:CC:DD:EE:FF"
+
+# URL for alert webhook (e.g., Slack, Discord)
+alert_webhook_url: "https://your-webhook.url/here"
+
+# Risk threshold settings
+risk_thresholds:
+  signal_strength_diff: 10  # Difference in dBm to raise suspicion
+  open_network_penalty: 50   # Risk score increase if network is open
+  max_risk_score_allowed: 75 # Threshold above which an alert is triggered

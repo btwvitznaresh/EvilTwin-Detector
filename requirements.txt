@@ -1,0 +1,10 @@
+scapy
+pywifi
+rich
+streamlit
+plotly
+fastapi
+pandas
+pyyaml
+pytest
+requests
